@@ -1,4 +1,4 @@
-Provides an Emscripten compiled version of stb_image Sean Barrett (nothings). I'm tinkering around with visualising internal data structures. This is very early work. It barely does anything yet. The general idea is to instrument the code so that I can visualise the process of decoding a JPEG image. I'm doing it in Emscripten so that the resulting visualisation will be able to run in a web browser.
+Provides an Emscripten compiled version of stb_image by Sean Barrett (nothings). I'm tinkering around with visualising internal data structures. This is very early work. It barely does anything yet. The general idea is to instrument the code so that I can visualise the process of decoding a JPEG image. I'm doing it in Emscripten so that the resulting visualisation will be able to run in a web browser.
 
 Setup:
 
