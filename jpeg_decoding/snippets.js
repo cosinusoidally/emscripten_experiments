@@ -85,13 +85,19 @@ function mkbuf(buf){
 
 /*
 
-
+  mkbuf_heap write array to heap. Returns pointer to that array
+ 
 */
 
 function mkbuf_heap(buf){
- var ptr=_malloc(buf.length);
+  var ptr=_malloc(buf.length);
+  for(var i=0;i<buf.length;i++){
+     HEAPU8[i+ptr]=buf[i];
+  }
+/*
  buf.forEach(function(x,i){HEAPU8[i+ptr]=x});
- return ptr;
+*/
+  return ptr;
 }
 
 /*

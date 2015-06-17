@@ -21,4 +21,7 @@ I made a deliberate choice to compile this with an old version of Emscripten to 
 Tour of code:
 
 em_main.c - dummy main file. Doesn't do anything but include stb_image.h
-index.html - Loads a.out.js, a.out.mem 
+index.html - Loads a.out.js, a.out.mem and the snippets.js utility file. You will get a blank screen when you load this. You then need to manually run varous functions to make it display stuff. It's done like this so I can do exploratory style REPL programming.
+stb_image.h - The image decoder library
+a.out.js - Emscripten compiled version of the library
+other_snippets.js - misc code snippets that do stuff
