@@ -1,0 +1,19 @@
+setup_canvas()
+up_scn()
+get_lenna()
+// Note you must wait until you see "got lenna" in the console before proceeding
+
+// pick one of these below depending on where you want to allocate
+b=mkbuf(byteArray)
+b=mkbuf_heap(byteArray)
+up_scn()
+
+// Width and heigh need to be passed as pointers so must allocate them
+w=mkbuf(1)
+h=mkbuf(1)
+
+// This is calling into C. 
+raw=_stbi_load_from_memory(b,w,h,0,3)
+up_scn()
+
+put_img()

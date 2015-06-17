@@ -1,0 +1,3 @@
+Here are bunch of things I have been doing with Emscripten. Not a lot to see yet, but I should be adding more stuff on a semi-regular basis.
+
+Experiments with JPEG decoding is my current project (see jpeg_decoder folder).

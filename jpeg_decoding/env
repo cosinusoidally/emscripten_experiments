@@ -1,0 +1,7 @@
+Just some notes for me:
+
+export EMCC_FAST_COMPILER=0
+use emscripten 1.16.0
+
+Use of an old version of emscripten is deliberate. I wanted to play around with the pure JS version of Emscripten.
+

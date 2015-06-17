@@ -1,0 +1,24 @@
+Provides an Emscripten compiled version of stb_image Sean Barrett (nothings). I'm tinkering around with visualising internal data structures. This is very early work. It barely does anything yet. The general idea is to instrument the code so that I can visualise the process of decoding a JPEG image. I'm doing it in Emscripten so that the resulting visualisation will be able to run in a web browser.
+
+Setup:
+
+You can very likely get away with a stock Emscripten release on any OS.
+
+If you want to exactly match my setup do the following:
+
+Install a stock Ubuntu 12.04 x86_64. Checkout Emscripten from github (must be 1.16.0, git checkout 1.16.0). Grab a stock clang/llvm 3.3. Grab a stock node js. Stick clang and node.js in your path. export EMCC_FAST_COMPILER=0 . Then run emcc and see if you get any errors. If all goes well you should now be ready to build.
+
+Build with:
+
+emcc -O0 -g -s LINKABLE=1 -s TOTAL_MEMORY=1572864 -s TOTAL_STACK=524288 -s NO_EXIT_RUNTIME=1 em_main.c 
+
+First compile will probably be slow. This is because Emscripten will compile system stuff like libc. Later builds should be quite quick. The idea behind the low stack limit and the low memory limit is to allow us to display the whole memory in a HTML canvas on a single screen. Each pixel will represent 3 bytes. Optimisations are off and debugging info is turned up to 11 so we can easly access all symbols. 
+
+Note:
+
+I made a deliberate choice to compile this with an old version of Emscripten to avoid having to build a custom version of LLVM/clang (with the Linux version of Emscripten you need to compile LLVM/clang yourself, other platforms you do not need to do this). I'll stick to that version of Emscripten throughout the project, unless I run into any major bugs (which hopefully will be unlikely as stb_image is written in a very conservative dialect of C). I'm also compiling with optimizations off and debugging symbols on which helps to skirt around toolchain bugs..
+
+Tour of code:
+
+em_main.c - dummy main file. Doesn't do anything but include stb_image.h
+index.html - Loads a.out.js, a.out.mem 
