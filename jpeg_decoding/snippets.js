@@ -122,3 +122,22 @@ function put_img(){
   ctx.putImageData(c,0,0);
 }
 
+
+/*
+
+ load load a script
+
+*/
+
+
+function load(src){
+
+  var script=document.createElement("script");
+  script.src=src;
+  document.body.appendChild(script);
+
+}
+
+
+
+
