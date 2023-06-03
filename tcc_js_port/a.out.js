@@ -59812,7 +59812,7 @@ Module['callMain'] = Module.callMain = function callMain(args) {
 
   try {
 
-    var ret = Module['_main'](argc, argv, 0);
+    var ret = _main(argc, argv, 0);
 
 
     // if we're not running an evented main loop, it's time to exit
@@ -59918,7 +59918,7 @@ function exit(status) {
     }, 500);
   } else
   if (ENVIRONMENT_IS_SHELL && typeof quit === 'function') {
-    quit(status);
+//    quit(status);
   }
   // if we reach here, we must throw an exception to halt the current execution
   throw new ExitStatus(status);
@@ -59955,18 +59955,19 @@ if (Module['noInitialRun']) {
   shouldRunNow = false;
 }
 
+load("../lib/setup_platform.js");
 
-run();
+var st=Date.now();
 
-// {{POST_RUN_ADDITIONS}}
+function compile(out_name){
+  print("starting compile");
+  st=Date.now();
 
+  run();
+  print("compile took: "+ ((Date.now()-st)/1000)+"s");
 
-
-
-
-
-// {{MODULE_ADDITIONS}}
-
-
-
-//# sourceMappingURL=a.out.js.map
+  f=libc.fopen(out_name,"wb");
+  op=FS.readFile("out.o");
+  libc.fwrite(op,op.length,1,f);
+  libc.fclose(f);
+}
