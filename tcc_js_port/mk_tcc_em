@@ -1,0 +1,1 @@
+emcc -s TOTAL_MEMORY=134217728 -Wall -O0 -g4 tcc_bootstrap.c
